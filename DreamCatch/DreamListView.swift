@@ -6,13 +6,47 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct DreamListView: View {
+    @Environment(\.modelContext) var modelContext
+    @Query(sort: \Dream.date, order: .reverse) var dreams: [Dream]
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            ForEach(dreams) { dream in
+                NavigationLink(value: dream) {
+                    VStack(alignment: .leading) {
+                        Text(dream.title)
+                            .font(.headline)
+                        
+                        Text(dream.date.formatted(date: .long, time: .shortened))
+                    }
+                }
+            }
+            .onDelete(perform: deleteDreams)
+        }
+    }
+    
+    init(sort: SortDescriptor<Dream>, searchString: String) {
+        _dreams = Query(filter: #Predicate {
+            if searchString.isEmpty {
+                return true
+            } else {
+                // search the title or content of the dream
+                return $0.title.localizedStandardContains(searchString) || $0.content.localizedStandardContains(searchString)
+            }
+        }, sort: [sort])
+    }
+    
+    func deleteDreams(_ indexSet: IndexSet) {
+        for index in indexSet {
+            let dream = dreams[index]
+            modelContext.delete(dream)
+        }
     }
 }
 
 #Preview {
-    DreamListView()
+    DreamListView(sort: SortDescriptor(\Dream.title), searchString: "")
 }

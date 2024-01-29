@@ -15,8 +15,9 @@ class Dream {
     var date: Date
     var lucidity: Float
     var isNightmare: Bool
+    @Relationship(deleteRule: .cascade) var signs = [DreamSign]()
     
-    init(title: String = "My Dream", content: String = "", date: Date = .now, lucidity: Float = 0.0, isNightmare: Bool = false) {
+    init(title: String = "", content: String = "", date: Date = .now, lucidity: Float = 0.0, isNightmare: Bool = false) {
         self.title = title
         self.content = content
         self.date = date
