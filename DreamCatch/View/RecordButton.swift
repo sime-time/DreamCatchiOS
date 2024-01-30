@@ -17,11 +17,13 @@ import SwiftUI
 
 struct RecordButton: View {
     @Binding var isRecording: Bool
-    @Environment(\.colorScheme) var colorScheme
     let startAction: () -> Void
     let stopAction: () -> Void
     let buttonColor: Color
     let animation: Animation
+    
+    // make the button border change depending on light or dark mode
+    @Environment(\.colorScheme) var colorScheme
     var borderColor: Color {
         switch colorScheme {
         case .light:

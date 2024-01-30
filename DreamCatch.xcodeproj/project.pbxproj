@@ -16,6 +16,10 @@
 		12459A552B674F240032A1F3 /* DreamListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12459A542B674F240032A1F3 /* DreamListView.swift */; };
 		12459A5B2B6757260032A1F3 /* DreamSign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12459A5A2B6757260032A1F3 /* DreamSign.swift */; };
 		12CB559A2B6946430082950E /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB55992B6946430082950E /* RecordButton.swift */; };
+		12CB559E2B6952E50082950E /* SiriWaveView in Frameworks */ = {isa = PBXBuildFile; productRef = 12CB559D2B6952E50082950E /* SiriWaveView */; };
+		12CB55A12B6953690082950E /* XCAOpenAIClient in Frameworks */ = {isa = PBXBuildFile; productRef = 12CB55A02B6953690082950E /* XCAOpenAIClient */; };
+		12CB55A52B6955310082950E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB55A42B6955310082950E /* ViewModel.swift */; };
+		12CB55AA2B695E120082950E /* DreamRecordState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CB55A92B695E120082950E /* DreamRecordState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +33,8 @@
 		12459A542B674F240032A1F3 /* DreamListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamListView.swift; sourceTree = "<group>"; };
 		12459A5A2B6757260032A1F3 /* DreamSign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamSign.swift; sourceTree = "<group>"; };
 		12CB55992B6946430082950E /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
+		12CB55A42B6955310082950E /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		12CB55A92B695E120082950E /* DreamRecordState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamRecordState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +42,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12CB55A12B6953690082950E /* XCAOpenAIClient in Frameworks */,
+				12CB559E2B6952E50082950E /* SiriWaveView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,14 +70,11 @@
 			isa = PBXGroup;
 			children = (
 				12459A402B67375C0032A1F3 /* DreamCatchApp.swift */,
-				12459A422B67375C0032A1F3 /* ContentView.swift */,
-				12459A542B674F240032A1F3 /* DreamListView.swift */,
-				12459A5A2B6757260032A1F3 /* DreamSign.swift */,
-				12459A502B6740CF0032A1F3 /* EditDreamView.swift */,
-				12459A4E2B6737D50032A1F3 /* Dream.swift */,
+				12CB55A42B6955310082950E /* ViewModel.swift */,
+				12CB55AE2B6981270082950E /* View */,
+				12CB55AD2B6981150082950E /* Model */,
 				12459A442B67375D0032A1F3 /* Assets.xcassets */,
 				12459A462B67375D0032A1F3 /* Preview Content */,
-				12CB55992B6946430082950E /* RecordButton.swift */,
 			);
 			path = DreamCatch;
 			sourceTree = "<group>";
@@ -80,6 +85,27 @@
 				12459A472B67375D0032A1F3 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		12CB55AD2B6981150082950E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				12CB55A92B695E120082950E /* DreamRecordState.swift */,
+				12459A4E2B6737D50032A1F3 /* Dream.swift */,
+				12459A5A2B6757260032A1F3 /* DreamSign.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		12CB55AE2B6981270082950E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				12459A542B674F240032A1F3 /* DreamListView.swift */,
+				12459A422B67375C0032A1F3 /* ContentView.swift */,
+				12459A502B6740CF0032A1F3 /* EditDreamView.swift */,
+				12CB55992B6946430082950E /* RecordButton.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -98,6 +124,10 @@
 			dependencies = (
 			);
 			name = DreamCatch;
+			packageProductDependencies = (
+				12CB559D2B6952E50082950E /* SiriWaveView */,
+				12CB55A02B6953690082950E /* XCAOpenAIClient */,
+			);
 			productName = DreamCatch;
 			productReference = 12459A3D2B67375C0032A1F3 /* DreamCatch.app */;
 			productType = "com.apple.product-type.application";
@@ -126,6 +156,10 @@
 				Base,
 			);
 			mainGroup = 12459A342B67375C0032A1F3;
+			packageReferences = (
+				12CB559C2B6952E50082950E /* XCRemoteSwiftPackageReference "SiriWaveView" */,
+				12CB559F2B6953680082950E /* XCRemoteSwiftPackageReference "XCAOpenAIClient" */,
+			);
 			productRefGroup = 12459A3E2B67375C0032A1F3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -152,7 +186,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12CB55AA2B695E120082950E /* DreamRecordState.swift in Sources */,
 				12459A512B6740CF0032A1F3 /* EditDreamView.swift in Sources */,
+				12CB55A52B6955310082950E /* ViewModel.swift in Sources */,
 				12459A552B674F240032A1F3 /* DreamListView.swift in Sources */,
 				12459A5B2B6757260032A1F3 /* DreamSign.swift in Sources */,
 				12CB559A2B6946430082950E /* RecordButton.swift in Sources */,
@@ -295,11 +331,13 @@
 				DEVELOPMENT_TEAM = G755KT8JB2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DreamCatch/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Voice Record your Dream Entries";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -324,11 +362,13 @@
 				DEVELOPMENT_TEAM = G755KT8JB2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DreamCatch/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Voice Record your Dream Entries";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -364,6 +404,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		12CB559C2B6952E50082950E /* XCRemoteSwiftPackageReference "SiriWaveView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alfianlosari/SiriWaveView.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		12CB559F2B6953680082950E /* XCRemoteSwiftPackageReference "XCAOpenAIClient" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alfianlosari/XCAOpenAIClient";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		12CB559D2B6952E50082950E /* SiriWaveView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 12CB559C2B6952E50082950E /* XCRemoteSwiftPackageReference "SiriWaveView" */;
+			productName = SiriWaveView;
+		};
+		12CB55A02B6953690082950E /* XCAOpenAIClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 12CB559F2B6953680082950E /* XCRemoteSwiftPackageReference "XCAOpenAIClient" */;
+			productName = XCAOpenAIClient;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 12459A352B67375C0032A1F3 /* Project object */;
 }
