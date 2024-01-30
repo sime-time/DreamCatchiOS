@@ -152,9 +152,9 @@ class ViewModel: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
                 try Task.checkCancellation()
                 let responseText = try await client.promptChatGPT(prompt: prompt)
                 
-                // create a dream object in swift data model
+                // TODO: create a dream object in swift data model
                 try Task.checkCancellation()
-                
+                print(responseText) // temp
                 
             } catch {
                 if Task.isCancelled { return }

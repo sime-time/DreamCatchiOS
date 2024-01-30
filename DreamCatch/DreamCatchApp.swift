@@ -14,6 +14,6 @@ struct DreamCatchApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Dream.self) 
+        .modelContainer(for: Dream.self)
     }
 }

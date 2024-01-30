@@ -11,7 +11,7 @@ import SwiftData
 struct DreamListView: View {
     @Environment(\.modelContext) var modelContext
     @Query(sort: \Dream.date, order: .reverse) var dreams: [Dream]
-
+    
     var body: some View {
         List {
             ForEach(dreams) { dream in
@@ -20,7 +20,7 @@ struct DreamListView: View {
                         Text(dream.title)
                             .font(.headline)
                         
-                        Text(dream.date.formatted(date: .long, time: .shortened))
+                        Text(dream.date.formatted(date: .long, time: .omitted))
                     }
                 }
             }

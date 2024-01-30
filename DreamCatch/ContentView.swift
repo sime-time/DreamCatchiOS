@@ -11,7 +11,7 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) var modelContext
     @State private var path = [Dream]()
-    @State private var sortOrder = SortDescriptor(\Dream.title)
+    @State private var sortOrder = SortDescriptor(\Dream.date, order: .reverse)
     @State private var searchText = ""
     
     var body: some View {
@@ -21,24 +21,22 @@ struct ContentView: View {
                 .navigationDestination(for: Dream.self, destination: EditDreamView.init)
                 .searchable(text: $searchText) 
                 .toolbar {
-                    Button("Add Dream", systemImage: "plus", action: addDream)
-                    
                     Menu("Sort", systemImage: "arrow.up.arrow.down") {
                         Picker("Sort", selection: $sortOrder) {
                             Text("Title")
                                 .tag(SortDescriptor(\Dream.title))
                             
-                            Text("Lucidity")
+                            Text("Most Lucid")
                                 .tag(SortDescriptor(\Dream.lucidity, order: .reverse))
                             
-                            Text("Date")
+                            Text("Most Recent Date")
                                 .tag(SortDescriptor(\Dream.date, order: .reverse))
                         }
                         .pickerStyle(.inline) 
                     }
+                    
+                    Button("Add Dream", systemImage: "plus", action: addDream)
                 }
-            
-
         }
     }
     
