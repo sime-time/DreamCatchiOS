@@ -49,13 +49,6 @@
             ReferencedContainer = "container:DreamCatch.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "OPEN_AI_KEY"
-            value = "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"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

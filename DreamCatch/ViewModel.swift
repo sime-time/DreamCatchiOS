@@ -13,7 +13,7 @@ import XCAOpenAIClient
 @Observable
 class ViewModel: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     // properties
-    let client = OpenAIClient(apiKey: ProcessInfo.processInfo.environment["OPEN_AI_KEY"]!)
+    let client = OpenAIClient(apiKey: "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")
     var audioRecorder: AVAudioRecorder!
     #if !os(macOS)
     var recordingSession = AVAudioSession.sharedInstance()
@@ -87,9 +87,9 @@ class ViewModel: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
         resetValues()
         state = .recordingSpeech
         do {
-            audioRecorder = try AVAudioRecorder(url: captureURL, 
+            audioRecorder = try AVAudioRecorder(url: captureURL,
                                                 settings: [
-                                                    AVFormatIDKey: Int(kAudioFileMPEG4Type),
+                                                    AVFormatIDKey: kAudioFormatMPEG4AAC,
                                                     AVSampleRateKey: 12000,
                                                     AVNumberOfChannelsKey: 1,
                                                     AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
@@ -149,12 +149,12 @@ class ViewModel: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
                 let prompt = try await client.generateAudioTransciptions(audioData: audioData)
                 
                 // prompt gpt with transcription
-                try Task.checkCancellation()
-                let responseText = try await client.promptChatGPT(prompt: prompt)
+                //try Task.checkCancellation()
+                //let responseText = try await client.promptChatGPT(prompt: prompt)
                 
                 // TODO: create a dream object in swift data model
                 try Task.checkCancellation()
-                print(responseText) // temp
+                print(prompt) // temp
                 
             } catch {
                 if Task.isCancelled { return }

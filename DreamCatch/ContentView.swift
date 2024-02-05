@@ -15,28 +15,31 @@ struct ContentView: View {
     @State private var searchText = ""
     
     var body: some View {
-        NavigationStack(path: $path) {
-            DreamListView(sort: sortOrder, searchString: searchText)
-                .navigationTitle("DreamCatch")
-                .navigationDestination(for: Dream.self, destination: EditDreamView.init)
-                .searchable(text: $searchText) 
-                .toolbar {
-                    Menu("Sort", systemImage: "arrow.up.arrow.down") {
-                        Picker("Sort", selection: $sortOrder) {
-                            Text("Title")
-                                .tag(SortDescriptor(\Dream.title))
-                            
-                            Text("Most Lucid")
-                                .tag(SortDescriptor(\Dream.lucidity, order: .reverse))
-                            
-                            Text("Most Recent Date")
-                                .tag(SortDescriptor(\Dream.date, order: .reverse))
+        VStack {
+            NavigationStack(path: $path) {
+                DreamListView(sort: sortOrder, searchString: searchText)
+                    .navigationTitle("DreamCatch")
+                    .navigationDestination(for: Dream.self, destination: EditDreamView.init)
+                    .searchable(text: $searchText)
+                    .toolbar {
+                        Menu("Sort", systemImage: "arrow.up.arrow.down") {
+                            Picker("Sort", selection: $sortOrder) {
+                                Text("Title")
+                                    .tag(SortDescriptor(\Dream.title))
+                                
+                                Text("Most Lucid")
+                                    .tag(SortDescriptor(\Dream.lucidity, order: .reverse))
+                                
+                                Text("Most Recent Date")
+                                    .tag(SortDescriptor(\Dream.date, order: .reverse))
+                            }
+                            .pickerStyle(.inline)
                         }
-                        .pickerStyle(.inline) 
+                        
+                        Button("Add Dream", systemImage: "plus", action: addDream)
                     }
-                    
-                    Button("Add Dream", systemImage: "plus", action: addDream)
-                }
+            }
+            RecordView()
         }
     }
     
