@@ -23,7 +23,55 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "21273010-3CC6-445C-8989-9BBBB611C66E"
+            uuid = "E5422606-20F3-4083-B65E-05D73DD88E61"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DreamCatch/ViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "processSpeechTask(audioData:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E5422606-20F3-4083-B65E-05D73DD88E61 - ed8b75e0112bc181"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Swift.MainActor @Sendable () async -&gt; () in DreamCatch.ViewModel.processSpeechTask(audioData: Foundation.Data) -&gt; Swift.Task&lt;(), Swift.Never&gt;"
+                  moduleName = "DreamCatch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/simedunn/Projects/DreamCatch/DreamCatch/ViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
+                  offsetFromSymbolStart = "132">
+               </Location>
+               <Location
+                  uuid = "E5422606-20F3-4083-B65E-05D73DD88E61 - 1e286085f0ab2c05"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in DreamCatch.ViewModel.processSpeechTask(audioURL: Foundation.URL) -&gt; Swift.Task&lt;(), Swift.Never&gt;"
+                  moduleName = "DreamCatch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/simedunn/Projects/DreamCatch/DreamCatch/ViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "124">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "83835560-6485-4D27-8D24-AD7546F4B677"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -39,62 +87,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D90CD800-BE72-4D8F-9F25-C7B3A62ED190"
+            uuid = "ECBB862D-02E9-4CA8-9C83-5467E7560C23"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DreamCatch/ViewModel.swift"
+            filePath = "DreamCatch/FileSystemManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "startCaptureAudio()"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "saveRecordingFile()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "D90CD800-BE72-4D8F-9F25-C7B3A62ED190 - ddfb342de4cd4a85"
+                  uuid = "ECBB862D-02E9-4CA8-9C83-5467E7560C23 - 3e4f8fca2d284ae2"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "DreamCatch.ViewModel.startCaptureAudio() -&gt; ()"
+                  symbolName = "static DreamCatch.FileSystemManager.saveRecordingFile() -&gt; Swift.Optional&lt;Swift.String&gt;"
                   moduleName = "DreamCatch"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/simedunn/Projects/DreamCatch/DreamCatch/ViewModel.swift"
+                  urlString = "file:///Users/simedunn/Projects/DreamCatch/DreamCatch/FileSystemManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "91"
-                  endingLineNumber = "91"
-                  offsetFromSymbolStart = "288">
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "488">
                </Location>
                <Location
-                  uuid = "D90CD800-BE72-4D8F-9F25-C7B3A62ED190 - ddfb342de4cd4aba"
+                  uuid = "ECBB862D-02E9-4CA8-9C83-5467E7560C23 - 3e4f8fca2d284a03"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "DreamCatch.ViewModel.startCaptureAudio() -&gt; ()"
+                  symbolName = "static DreamCatch.FileSystemManager.saveRecordingFile() -&gt; Swift.Optional&lt;Swift.String&gt;"
                   moduleName = "DreamCatch"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/simedunn/Projects/DreamCatch/DreamCatch/ViewModel.swift"
+                  urlString = "file:///Users/simedunn/Projects/DreamCatch/DreamCatch/FileSystemManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "356">
-               </Location>
-               <Location
-                  uuid = "D90CD800-BE72-4D8F-9F25-C7B3A62ED190 - ddfb342de4cd4aba"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DreamCatch.ViewModel.startCaptureAudio() -&gt; ()"
-                  moduleName = "DreamCatch"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/simedunn/Projects/DreamCatch/DreamCatch/ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "288">
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "488">
                </Location>
             </Locations>
          </BreakpointContent>

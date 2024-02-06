@@ -6,39 +6,32 @@
 //
 
 import Foundation
-import AVFoundation
 import Observation
-import XCAOpenAIClient
+import SwiftWhisper
 
 @Observable
-class ViewModel: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
+class ViewModel: NSObject {
+    
     // properties
-    let client = OpenAIClient(apiKey: "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")
-    var audioRecorder: AVAudioRecorder!
-    #if !os(macOS)
-    var recordingSession = AVAudioSession.sharedInstance()
-    #endif
+    var audioRecorder = AudioRecorder()
     
-    var animationTimer: Timer?
-    var recordingTimer: Timer?
-    
-    var audioPower = 0.0
-    var prevAudioPower: Double?
     var processingSpeechTask: Task<Void, Never>?
     
+    var audioURL: URL?
+    
     // computed props
-    var captureURL: URL {
-        FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
-            .first!.appendingPathComponent("recording.m4a")
+    var modelURL: URL? {
+        return FileSystemManager.getModelURL()
     }
-    var state = DreamRecordState.idle {
+    var state: AudioRecordState = .idle {
         didSet { print(state) }
     }
     var isIdle: Bool {
         if case .idle = state {
             return true
+        } else {
+            return false
         }
-        return false
     }
     var siriWaveFormOpacity: CGFloat {
         switch state {
@@ -49,141 +42,70 @@ class ViewModel: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
         }
     }
     
-    
-    // override functions
+    // functions
     override init() {
         super.init()
-        #if !os(macOS)
-        do {
-            #if os(iOS)
-            try recordingSession.setCategory(.playAndRecord, options: .defaultToSpeaker)
-            #else
-            try recordingSession.setCategory(.playAndRecord, mode: .default)
-            #endif
-            try recordingSession.setActive(true)
-            
-            AVAudioApplication.requestRecordPermission {  [unowned self] allowed in
-                if !allowed {
-                    self.state = .error("Recording not allowed by the user")
+    }
+    func startCaptureAudio() {
+        self.audioRecorder.setup()
+        self.audioRecorder.record()
+    }
+
+    func finishCaptureAudio() {
+        self.audioRecorder.stopRecording(completion: captureAudioURL)
+        if let url = self.audioURL {
+            FileSystemManager.convertAudioFileToPCMArray(fileURL: url) { result in
+                switch result {
+                case .success(let pcmArray):
+                    print("Successfully converted audio to PCM: \(pcmArray)")
+                    self.processingSpeechTask = self.processSpeechTask(audioData: pcmArray)
+                case .failure(let error):
+                    self.state = .error(error)
                 }
             }
-            
-        } catch {
-            state = .error(error)
         }
-        #endif
+        self.state = .idle
     }
     
-    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-        if !flag {
-            resetValues()
-            state = .idle
+    func captureAudioURL(_ fileName: String?) -> Void {
+        if let fileName {
+            self.audioURL = FileSystemManager.getRecordingURL(fileName)
+            print(audioURL!)
         }
     }
     
-
-    // functions
-    func startCaptureAudio() {
-        resetValues()
-        state = .recordingSpeech
-        do {
-            audioRecorder = try AVAudioRecorder(url: captureURL,
-                                                settings: [
-                                                    AVFormatIDKey: kAudioFormatMPEG4AAC,
-                                                    AVSampleRateKey: 12000,
-                                                    AVNumberOfChannelsKey: 1,
-                                                    AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-                                                ])
-            audioRecorder.isMeteringEnabled = true
-            audioRecorder.delegate = self
-            audioRecorder.record()
-            
-            animationTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true, block: { [unowned self]_ in
-                guard self.audioRecorder != nil else { return }
-                self.audioRecorder.updateMeters()
-                
-                // as the recording gets louder, the minus value will get larger.
-                // formula to normalize the value between 0 and 1
-                let power = min(1, max(0, 1 - abs(Double(self.audioRecorder.averagePower(forChannel: 0)) / 50) ))
-                self.audioPower = power
-            })
-            
-            recordingTimer = Timer.scheduledTimer(withTimeInterval: 1.6, repeats: true, block: { [unowned self]_ in
-                guard self.audioRecorder != nil else { return }
-                self.audioRecorder.updateMeters()
-                
-                let power = min(1, max(0, 1 - abs(Double(self.audioRecorder.averagePower(forChannel: 0)) / 50) ))
-                if self.prevAudioPower == nil {
-                    self.prevAudioPower = power
-                    return
-                }
-                if let prevAudioPower = self.prevAudioPower, prevAudioPower < 0.25 && power < 0.175 {
-                    self.finishCaptureAudio()
-                    return
-                }
-                self.prevAudioPower = power
-            })
-            
-        } catch {
-            resetValues()
-            state = .error(error)
-        }
-    }
-    
-    func finishCaptureAudio() {
-        resetValues()
-        do {
-            let data = try Data(contentsOf: captureURL)
-            processingSpeechTask = processSpeechTask(audioData: data)
-        } catch {
-            state = .error(error)
-            resetValues()
-        }
-    }
-    
-    func processSpeechTask(audioData: Data) -> Task<Void, Never> {
+    func processSpeechTask(audioData: [Float]) -> Task<Void, Never> {
         Task { @MainActor [unowned self] in
             do {
-                // use whisper ai to get transcription
+                // transcribe with whisper
                 self.state = .processingSpeech
-                let prompt = try await client.generateAudioTransciptions(audioData: audioData)
-                
-                // prompt gpt with transcription
-                //try Task.checkCancellation()
-                //let responseText = try await client.promptChatGPT(prompt: prompt)
+                if let modelURL {
+                    let whisper = Whisper(fromFileURL: modelURL)
+                    let segments = try await whisper.transcribe(audioFrames: audioData)
+                    let transcript = segments.map(\.text).joined()
+                    print(transcript) // temp
+                }
+                try Task.checkCancellation()
                 
                 // TODO: create a dream object in swift data model
-                try Task.checkCancellation()
-                print(prompt) // temp
+                
                 
             } catch {
                 if Task.isCancelled { return }
                 state = .error(error)
-                resetValues()
             }
         }
     }
     
-    func cancelRecording() {
-        resetValues()
-        state = .idle
+    func cancelAudioRecording() {
+        self.audioRecorder.cancelRecording()
+        state = .idle 
     }
     
     func cancelProcessingTask() {
         processingSpeechTask?.cancel()
         processingSpeechTask = nil
-        resetValues()
         state = .idle
     }
     
-    func resetValues() {
-        audioPower = 0
-        prevAudioPower = nil
-        audioRecorder?.stop()
-        audioRecorder = nil
-        recordingTimer?.invalidate()
-        recordingTimer = nil
-        animationTimer?.invalidate()
-        animationTimer = nil
-    }
 }

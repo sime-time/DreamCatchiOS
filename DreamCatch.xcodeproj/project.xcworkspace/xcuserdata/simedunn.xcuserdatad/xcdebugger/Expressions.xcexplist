@@ -3,7 +3,15 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ViewModel.startCaptureAudio():ViewModel.swift">
+         contextName = "ViewModel.captureAudioData(_:):ViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.audioURL">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewModel.captureURL.getter:ViewModel.swift">
          <PersistentStrings>
             <PersistentString
                value = "captureURL">
@@ -11,7 +19,23 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ViewModel.captureURL.getter:ViewModel.swift">
+         contextName = "ViewModel.finishCaptureAudio():ViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "audioURL">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RecordButton.activate():RecordButton.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "isRecording">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewModel.startCaptureAudio():ViewModel.swift">
          <PersistentStrings>
             <PersistentString
                value = "captureURL">

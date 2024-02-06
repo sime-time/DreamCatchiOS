@@ -21,7 +21,7 @@ struct RecordView: View {
                     .font(.title2)
                 
                 SiriWaveView()
-                    .power(power: vm.audioPower)
+                    .power(power: vm.audioRecorder.audioPower)
                     .opacity(vm.siriWaveFormOpacity)
                     .frame(height: 256)
                 
@@ -47,7 +47,7 @@ struct RecordView: View {
             }
             ZStack {
                 
-                RecordButton(isRecording: $isRecording) {
+                RecordButton(isRecording: $vm.audioRecorder.isRecording) {
                     vm.state = .recordingSpeech
                     vm.startCaptureAudio()
                 } stopAction: {
@@ -73,8 +73,7 @@ struct RecordView: View {
     
     var cancelRecordingButton: some View {
         Button(role: .destructive) {
-            isRecording = false
-            vm.cancelRecording()
+            vm.cancelAudioRecording()
         } label: {
             Text("cancel")
                 .foregroundStyle(.accent)
@@ -95,26 +94,4 @@ struct RecordView: View {
 #Preview {
     RecordView()
 }
-/*
-#Preview("Idle") {
-    RecordView()
-}
 
-#Preview("Recording Speech") {
-    let vm = ViewModel() 
-    vm.state = DreamRecordState.recordingSpeech
-    return RecordView(vm: vm)
-}
-
-#Preview("Processing Speech") {
-    let vm = ViewModel()
-    vm.state = DreamRecordState.processingSpeech
-    return RecordView(vm: vm)
-}
-
-#Preview("Error") {
-    let vm = ViewModel()
-    vm.state = DreamRecordState.error("An error has occurred")
-    return RecordView(vm: vm)
-}
-*/

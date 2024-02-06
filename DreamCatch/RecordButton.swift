@@ -66,14 +66,14 @@ struct RecordButton: View {
     private func activate() {
         startAction()
         withAnimation(animation) {
-            isRecording.toggle()
+            isRecording = true
         }
     }
     
     private func deactivate() {
         stopAction()
         withAnimation(animation) {
-            isRecording.toggle()
+            isRecording = false
         }
     }
 }

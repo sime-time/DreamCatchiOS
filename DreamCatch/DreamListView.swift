@@ -13,18 +13,22 @@ struct DreamListView: View {
     @Query(sort: \Dream.date, order: .reverse) var dreams: [Dream]
     
     var body: some View {
-        List {
-            ForEach(dreams) { dream in
-                NavigationLink(value: dream) {
-                    VStack(alignment: .leading) {
-                        Text(dream.title)
-                            .font(.headline)
-                        
-                        Text(dream.date.formatted(date: .long, time: .omitted))
+        if (dreams.isEmpty) {
+            ContentUnavailableView("You don't have any dream entries yet", systemImage: "waveform.path")
+        } else {
+            List {
+                ForEach(dreams) { dream in
+                    NavigationLink(value: dream) {
+                        VStack(alignment: .leading) {
+                            Text(dream.title)
+                                .font(.headline)
+                            
+                            Text(dream.date.formatted(date: .long, time: .omitted))
+                        }
                     }
                 }
+                .onDelete(perform: deleteDreams)
             }
-            .onDelete(perform: deleteDreams)
         }
     }
     
