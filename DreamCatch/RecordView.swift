@@ -7,11 +7,18 @@
 
 import SwiftUI
 import SiriWaveView
+import SwiftData
 
 struct RecordView: View {
-    @State var vm = ViewModel()
-    @State var isRecording: Bool = false 
+    @Binding var modelContext: ModelContext
+    @State var vm: ViewModel
+    @State var isRecording: Bool = false
     @State var isSymbolAnimating: Bool = false
+    
+    init(mc: ModelContext) {
+        self.vm = ViewModel(mc: mc)
+        self._modelContext = Binding.constant(mc)
+    }
  
     var body: some View {
         VStack {
@@ -43,7 +50,7 @@ struct RecordView: View {
                 Spacer()
     
             default:
-                Spacer()
+                EmptyView()
             }
             ZStack {
                 
@@ -92,6 +99,7 @@ struct RecordView: View {
 }
 
 #Preview {
-    RecordView()
+    @Environment(\.modelContext) var modelContext
+    return RecordView(mc: modelContext)
 }
 

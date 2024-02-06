@@ -14,58 +14,10 @@
             filePath = "DreamCatch/RecordView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "body"
             landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E5422606-20F3-4083-B65E-05D73DD88E61"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DreamCatch/ViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "processSpeechTask(audioData:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E5422606-20F3-4083-B65E-05D73DD88E61 - ed8b75e0112bc181"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Swift.MainActor @Sendable () async -&gt; () in DreamCatch.ViewModel.processSpeechTask(audioData: Foundation.Data) -&gt; Swift.Task&lt;(), Swift.Never&gt;"
-                  moduleName = "DreamCatch"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/simedunn/Projects/DreamCatch/DreamCatch/ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "148"
-                  endingLineNumber = "148"
-                  offsetFromSymbolStart = "132">
-               </Location>
-               <Location
-                  uuid = "E5422606-20F3-4083-B65E-05D73DD88E61 - 1e286085f0ab2c05"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in DreamCatch.ViewModel.processSpeechTask(audioURL: Foundation.URL) -&gt; Swift.Task&lt;(), Swift.Never&gt;"
-                  moduleName = "DreamCatch"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/simedunn/Projects/DreamCatch/DreamCatch/ViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "71"
-                  endingLineNumber = "71"
-                  offsetFromSymbolStart = "124">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -78,8 +30,8 @@
             filePath = "DreamCatch/RecordView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -128,6 +80,54 @@
                   startingLineNumber = "56"
                   endingLineNumber = "56"
                   offsetFromSymbolStart = "488">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BEBC874D-A888-4318-9F6A-9003E1FD3078"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DreamCatch/ViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "processSpeechTask(audioData:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BEBC874D-A888-4318-9F6A-9003E1FD3078 - 228ab13e6bf362d7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in DreamCatch.ViewModel.processSpeechTask(audioData: Swift.Array&lt;Swift.Float&gt;) -&gt; Swift.Task&lt;(), Swift.Never&gt;"
+                  moduleName = "DreamCatch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/simedunn/Projects/DreamCatch/DreamCatch/ViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "480">
+               </Location>
+               <Location
+                  uuid = "BEBC874D-A888-4318-9F6A-9003E1FD3078 - 228ab13e6bf362e8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in DreamCatch.ViewModel.processSpeechTask(audioData: Swift.Array&lt;Swift.Float&gt;) -&gt; Swift.Task&lt;(), Swift.Never&gt;"
+                  moduleName = "DreamCatch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/simedunn/Projects/DreamCatch/DreamCatch/ViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "480">
                </Location>
             </Locations>
          </BreakpointContent>

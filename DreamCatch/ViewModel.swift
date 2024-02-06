@@ -8,15 +8,22 @@
 import Foundation
 import Observation
 import SwiftWhisper
+import SwiftData
 
 @Observable
 class ViewModel: NSObject {
+
+    var modelContext: ModelContext
     
+    init(mc: ModelContext) {
+        self.modelContext = mc
+        super.init()
+    }
+
+
     // properties
     var audioRecorder = AudioRecorder()
-    
     var processingSpeechTask: Task<Void, Never>?
-    
     var audioURL: URL?
     
     // computed props
@@ -43,9 +50,6 @@ class ViewModel: NSObject {
     }
     
     // functions
-    override init() {
-        super.init()
-    }
     func startCaptureAudio() {
         self.audioRecorder.setup()
         self.audioRecorder.record()
@@ -77,35 +81,41 @@ class ViewModel: NSObject {
     func processSpeechTask(audioData: [Float]) -> Task<Void, Never> {
         Task { @MainActor [unowned self] in
             do {
-                // transcribe with whisper
                 self.state = .processingSpeech
+                try Task.checkCancellation()
+                
+                // transcribe with whisper
                 if let modelURL {
                     let whisper = Whisper(fromFileURL: modelURL)
+                    try Task.checkCancellation()
+                    
                     let segments = try await whisper.transcribe(audioFrames: audioData)
                     let transcript = segments.map(\.text).joined()
                     print(transcript) // temp
+                    
+                    // create a dream object in swift data model
+                    let dream = Dream(content: transcript)
+                    modelContext.insert(dream)
+                    try modelContext.save()
                 }
-                try Task.checkCancellation()
-                
-                // TODO: create a dream object in swift data model
-                
                 
             } catch {
                 if Task.isCancelled { return }
-                state = .error(error)
+                self.state = .error(error)
             }
+            self.cancelProcessingTask()
         }
     }
     
     func cancelAudioRecording() {
         self.audioRecorder.cancelRecording()
-        state = .idle 
+        self.state = .idle 
     }
     
     func cancelProcessingTask() {
         processingSpeechTask?.cancel()
         processingSpeechTask = nil
-        state = .idle
+        self.state = .idle
     }
     
 }

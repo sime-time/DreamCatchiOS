@@ -38,8 +38,8 @@ struct ContentView: View {
                         
                         Button("Add Dream", systemImage: "plus", action: addDream)
                     }
+                RecordView(mc: modelContext)
             }
-            RecordView()
         }
     }
     
